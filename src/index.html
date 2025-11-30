@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel de Control Acceso Biométrico</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+    h1, h2 {
+      color: #facc15;
+    }
+    section {
+      border: 1px solid #1f2937;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      background: #111827;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+    label {
+      display: block;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    input[type="text"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 0.4rem 0.6rem;
+      margin-top: 0.2rem;
+      background: #020617;
+      color: #e5e7eb;
+      border-radius: 4px;
+      border: 1px solid #374151;
+    }
+    button {
+      margin-top: 0.8rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      background: #22c55e;
+      color: #052e16;
+    }
+    button:hover {
+      background: #16a34a;
+    }
+    .danger {
+      background: #ef4444;
+      color: #7f1d1d;
+    }
+    .danger:hover {
+      background: #dc2626;
+    }
+    .status {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      white-space: pre-line;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+    }
+    th, td {
+      border: 1px solid #1f2937;
+      padding: 0.4rem 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #111827;
+    }
+    tr:nth-child(even) {
+      background: #020617;
+    }
+    tr:nth-child(odd) {
+      background: #030712;
+    }
+    .pill {
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .pill-granted {
+      background: #22c55e33;
+      color: #bbf7d0;
+      border: 1px solid #22c55e;
+    }
+    .pill-unknown {
+      background: #f9731633;
+      color: #fed7aa;
+      border: 1px solid #f97316;
+    }
+    .pill-denied {
+      background: #ef444433;
+      color: #fecaca;
+      border: 1px solid #ef4444;
+    }
+    .small {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <h1>Panel de Acceso Biométrico</h1>
+  <p class="small">
+    Backend: Lambda + API Gateway + DynamoDB + Rekognition + S3<br />
+    API base: <code id="apiBaseDisplay"></code>
+  </p>
+
+  <!-- SECCIÓN 1: Alta de empleados -->
+  <section>
+    <h2>1. Agregar empleado (enrolar)</h2>
+    <form id="employeeForm">
+      <label for="employeeId">ID del empleado</label>
+      <input type="text" id="employeeId" name="employeeId" placeholder="ej: emp-0001" required />
+
+      <label for="employeeName">Nombre</label>
+      <input type="text" id="employeeName" name="employeeName" placeholder="ej: Juan Ruiz" required />
+
+      <label for="employeeDept">Departamento</label>
+      <input type="text" id="employeeDept" name="employeeDept" placeholder="ej: IT" required />
+
+      <label for="employeePhoto">Foto (cara clara, frontal)</label>
+      <input type="file" id="employeePhoto" name="employeePhoto" accept="image/*" required />
+
+      <button type="submit">Registrar empleado</button>
+    </form>
+    <div id="employeeStatus" class="status"></div>
+  </section>
+
+  <!-- SECCIÓN 2: Probar acceso -->
+  <section>
+    <h2>2. Probar acceso con foto (simulador de cámara)</h2>
+    <form id="accessForm">
+      <label for="doorId">ID de puerta (opcional)</label>
+      <input type="text" id="doorId" name="doorId" placeholder="ej: main-door" />
+
+      <label for="accessPhoto">Foto para verificar</label>
+      <input type="file" id="accessPhoto" name="accessPhoto" accept="image/*" required />
+
+      <button type="submit">Probar acceso</button>
+    </form>
+    <div id="accessStatus" class="status"></div>
+  </section>
+
+  <!-- SECCIÓN 3: Eventos -->
+  <section>
+    <h2>3. Eventos recientes de acceso</h2>
+    <button id="loadEventsBtn" class="danger">Cargar últimos eventos</button>
+    <div id="eventsStatus" class="status"></div>
+    <table id="eventsTable">
+      <thead>
+        <tr>
+          <th>Fecha / hora</th>
+          <th>Empleado</th>
+          <th>Puerta</th>
+          <th>Estado</th>
+          <th>Similarity</th>
+        </tr>
+      </thead>
+      <tbody id="eventsTbody">
+        <!-- Se llena por JS -->
+      </tbody>
+    </table>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
