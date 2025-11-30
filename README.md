@@ -50,7 +50,7 @@ Para que la aplicación funcione correctamente, mantén la siguiente organizaci�
 ├── index.html          # Interfaz gráfica principal (Panel de Control)
 ├── app.js              # Lógica del cliente y conexión a API Gateway
 ├── README.md           # Este archivo de documentación
-└── img/                # (Opcional) Carpeta para guardar capturas del manual
+└── img/                # (Opcional) Carpeta para guardar imagenes de empleados para probar el funcionamiento
 ```
 ---
 
@@ -74,7 +74,7 @@ Esta función agrega una persona a la base de datos autorizada.
 
 1.  Ubique la sección **"1. Agregar empleado (enrolar)"**.
 2.  Llene los campos:
-    * **ID:** Identificador único (ej: `FISICA-001`).
+    * **ID:** Identificador único (ej: `INF-001`).
     * **Nombre:** Nombre completo.
     * **Departamento:** Área de trabajo.
 3.  **Foto:** Haga clic en "Seleccionar archivo" y cargue una foto tipo documento.
