@@ -51,7 +51,7 @@ Para que la aplicación funcione correctamente, mantén la siguiente organizaci�
 ├── app.js              # Lógica del cliente y conexión a API Gateway
 ├── README.md           # Este archivo de documentación
 └── img/                # (Opcional) Carpeta para guardar capturas del manual
- 
+```
 ---
 
 ## 🛠 Tecnologías
