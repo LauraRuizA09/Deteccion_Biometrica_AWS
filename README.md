@@ -1,9 +1,9 @@
 # 🛡️ Sistema de Control de Acceso Biométrico (AWS Serverless)
 
-# Realizado por:
+## Realizado por:
 
-> **Jose Aldair Molina Mendes:** jmolinam@unal.edu.co
-> **Laura Ruiz Aarngo:** lruizar@unal.edu.co
+- **Jose Aldair Molina Mendes:** jmoliname@unal.edu.co
+- **Laura Ruiz Aarngo:** lruizar@unal.edu.co
 
 Este repositorio contiene el código fuente y la documentación de una aplicación de seguridad que utiliza **Inteligencia Artificial (Amazon Rekognition)** para gestionar el acceso físico de empleados mediante reconocimiento facial.
 
@@ -45,6 +45,7 @@ El backend es completamente **Serverless** (sin servidor), lo que garantiza esca
 
 Para que la aplicación funcione correctamente, mantén la siguiente organización de archivos:
 
+```text
 .
 ├── index.html          # Interfaz gráfica principal (Panel de Control)
 ├── app.js              # Lógica del cliente y conexión a API Gateway
